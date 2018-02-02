@@ -1,103 +1,70 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
 
-//components
-import Emoji from './Emoji';
+async function send(url, body, method = 'get') {
+  // return axios.get('http://localhost:3001/some-path');
+  try {
+    const { data } = await axios[method](`http://localhost:3001/${url}`, body);
+    return data;
+  } catch(err) {
+    console.log("err", err);
+    console.dir(err);
+    return err.response ? err.response.data : { success: false, msg: err.message };
+  }
+}
 
-//styles
-import './App.scss';
+async function onCreateOrUpdate(content, filepath, isCreate) {
+  const method = isCreate ? 'post' : 'put';
+  const { msg, success } = await send('file', { content, filepath }, method);
+  return success ? `${msg} bytes writte to ${filepath}` : `Error: ${msg}`;
+}
+
 
 class App extends Component {
+  state={
+    filepath: 'aaa.txt',
+    content: 'hello',
+    folder: '',
+    responses: []
+  };
+
+  updateResponses = (resp) => {
+    this.setState({
+      responses: this.state.responses.concat(resp)
+    });
+  };
+
+  async onCreateOrUpdate(content, filepath, isCreate) {
+    const resp = await onCreateOrUpdate(content, filepath, isCreate);
+    this.updateResponses(resp);
+  }
+
+  async onCreate(content = this.state.content, filepath = this.state.filepath) {
+    this.onCreateOrUpdate(content, filepath, true);
+  };
+
+  async onUpdate(content = this.state.content, filepath = this.state.filepath) {
+    this.onCreateOrUpdate(content, filepath);
+  }
+
+  async onListFiles(folderpath = this.state.folder) {
+    const { success, msg } = await send(`folder/${folderpath}`);
+    this.updateResponses(success ? msg : `Error: ${msg}`);
+  }
+
   render() {
     return (
       <div className="App">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2 className="App-title">
-            <Emoji label="danger" emoji="☢" />
-            <span> custom-react-scripts </span>
-            <Emoji label="danger" emoji="☢" />
-          </h2>
-          <div className="App-subtitle">
-            allow custom config for create-react-app without ejecting
-          </div>
-
-            <code>
-              create-react-app my-app --scripts-version custom-react-scripts
-            </code>
-
-          <p>
-            If you want to enable/disable certain features just modify the
-            <b> .env</b> file in the root directory of the project.
-          </p>
-
-          <b> Styling </b>
-          <ul className="configs style-configs">
-            <li>
-              <code>REACT_APP_SASS=true</code>
-              <span>- Enable SASS</span>
-            </li>
-            <li>
-              <code>REACT_APP_LESS=true</code>
-              <span>- Enable LESS</span>
-            </li>
-            <li>
-              <code>REACT_APP_STYLUS=true</code>
-              <span>- Enable Stylus</span>
-            </li>
-            <li>
-              <code>REACT_APP_CSS_MODULES=true</code>
-              <span>- Enable CSS modules </span>
-            </li>
-            <li>
-              <code>REACT_APP_SASS_MODULES=true</code>
-              <span>- Enable Sass modules </span>
-            </li>
-            <li>
-              <code>REACT_APP_SASS_MODULES=true</code>
-              <span>- Enable Stylus modules </span>
-            </li>
-            <li>
-              <code>REACT_APP_SASS_MODULES=true</code>
-              <span>- Enable Less modules </span>
-            </li>
-          </ul>
-
-          <b>Babel</b>
-
-          <ul className="configs babel-configs">
-            <li>
-              <code>REACT_APP_BABEL_STAGE_0=true</code>
-              <span>- Enable stage-0 preset</span>
-            </li>
-            <li>
-              <code>REACT_APP_DECORATORS=true</code>
-              <span>- Enable usage of decorators</span>
-            </li>
-          </ul>
-
-          <b>Other</b>
-
-          <ul className="configs babel-configs">
-            <li>
-              <code>REACT_APP_WEBPACK_DASHBOARD=true</code>
-              <span>
-                - Enables connection to {' '}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://github.com/FormidableLabs/electron-webpack-dashboard"
-                >
-                  webpack-dashboard
-                </a>{' '}
-                 (must be installed)
-              </span>
-            </li>
-          </ul>
-
-          <br />
-          <br />
-
+        <input value={this.state.filepath} onChange={(e) => this.setState({ filepath: e.target.value })}/>
+        <input value={this.state.content} onChange={(e) => this.setState({ content: e.target.value })} />
+        <input value={this.state.folder} onChange={(e) => this.setState({ folder: e.target.value })} />
+        <button onClick={() => this.onCreate()}>create</button>
+        <button onClick={() => this.onUpdate()}>update</button>
+        <button onClick={() => this.onListFiles()}>list files</button>
+        <div>
+          {this.state.responses.map((resp,i)=><div key={i}>{resp}</div>)}
         </div>
+      </div>
     );
   }
 }
