@@ -4,8 +4,11 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "custom-react-scripts": "0.2.1",
     "express": "^4.16.2",
+    "nodemon": "^1.14.12",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
@@ -13,6 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "nodemon server/index.js"
   }
 }
