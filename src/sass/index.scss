@@ -1,5 +1,27 @@
 @import 'vars';
 
-body {
-  background-color: $body-bg;
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/utilities/display";
+@import "~bootstrap/scss/utilities/flex";
+@import "~bootstrap/scss/utilities/spacing";
+@import "~bootstrap/scss/utilities/background";
+@import "~bootstrap/scss/utilities/text";
+
+@font-face {
+  font-family: DOS;
+  src: url("./perfect_dos_vga_437/Perfect DOS VGA 437.ttf") format("ttf");
 }
+
+body {
+  background: $gray url('../turbo-bg.svg') repeat;
+  font-family: DOS, monospace;
+}
+
+//@each $dir, $abbrev in (top:t, right:r, bottom:b, left:l) {
+//  .b#{$abbrev} {
+//    border-#{$dir}: 1px solid $yellow;
+//  }
+//}
