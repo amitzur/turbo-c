@@ -21,4 +21,4 @@ const colors = [
   { bg: 'cyan-dark', color: 'black' },
 ];
 
-export default () => <div className="d-flex flex-wrap m-5">{colors.map(color => <Rectangle key={color.bg} {...color} />)}</div>;
+export default () => <div className="d-flex flex-wrap mx-5">{colors.map(color => <Rectangle key={color.bg} {...color} />)}</div>;

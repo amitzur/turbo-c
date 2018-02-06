@@ -9,6 +9,7 @@
 @import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/background";
 @import "~bootstrap/scss/utilities/text";
+@import "~bootstrap/scss/utilities/borders";
 
 @font-face {
   font-family: DOS;
@@ -18,6 +19,7 @@
 body {
   background: $gray url('../turbo-bg.svg') repeat;
   font-family: DOS, monospace;
+  line-height: 16px;
 }
 
 //@each $dir, $abbrev in (top:t, right:r, bottom:b, left:l) {
@@ -25,3 +27,24 @@ body {
 //    border-#{$dir}: 1px solid $yellow;
 //  }
 //}
+
+ul {
+  @include list-unstyled();
+  margin-bottom: 0;
+}
+
+.h-100vh {
+  height: 100vh;
+}
+
+.clickable {
+  cursor: default;
+}
+
+.pos-relative {
+  position: relative;
+}
+
+.pos-absolute {
+  position: absolute;
+}

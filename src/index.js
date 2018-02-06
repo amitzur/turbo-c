@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './sass/index.scss';
-import App from './App';
+import TurboApp from './TurboApp';
+import appStore from './stores/app';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<TurboApp store={appStore} />, document.getElementById('root'));

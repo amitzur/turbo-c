@@ -23,3 +23,25 @@ $theme-colors: (
   green-dark: $green-dark,
   cyan-dark: $cyan-dark,
 );
+
+$spacer: 4px;
+$spacers: (
+        -2: $spacer * -2,
+        0: 0,
+        11: $spacer * 0.5,
+        1: $spacer * 1,
+        2: $spacer * 2,
+        3: $spacer * 3,
+        4: $spacer * 4,
+        5: $spacer * 5,
+        6: $spacer * 6,
+        7: $spacer * 7,
+        8: $spacer * 8
+);
+
+$font-size-base: 14px;
+
+$input-height-inner: 16px; // fuck bootstrap
+$input-height-inner-sm: 16px; // fuck bootstrap
+$input-height-inner-lg: 16px; // fuck bootstrap
+$nav-link-height:16px; // fuck bootstrap
