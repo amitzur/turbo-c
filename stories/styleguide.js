@@ -4,6 +4,7 @@ import menu from './menu';
 import popup from './popup';
 import navbar from './navbar';
 import cursor from './cursor';
+import button from './button';
 import window from './window';
 
 const styleguide = [
@@ -12,6 +13,7 @@ const styleguide = [
   { name: 'menu', render: menu },
   { name: 'popup', render: popup },
   { name: 'navbar', render: navbar },
+  { name: 'button', render: button },
   { name: 'window', render: window },
 ];
 

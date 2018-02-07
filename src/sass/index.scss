@@ -57,3 +57,24 @@ ul {
 .box-shadow {
   box-shadow: $box-shadow;
 }
+
+button {
+  outline: none !important;
+  box-shadow: 8px 8px $black;
+}
+
+button.bg-green-dark {
+  &:focus, &:active {
+    color: $white !important;
+    background: $green-dark !important;
+  }
+
+  &:active {
+    box-shadow: none;
+    transform: translateX(8px);
+  }
+
+  &:hover {
+    background: $green-dark !important;
+  }
+}
