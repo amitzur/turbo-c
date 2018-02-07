@@ -23,12 +23,6 @@ body {
   line-height: 16px;
 }
 
-//@each $dir, $abbrev in (top:t, right:r, bottom:b, left:l) {
-//  .b#{$abbrev} {
-//    border-#{$dir}: 1px solid $yellow;
-//  }
-//}
-
 ul {
   @include list-unstyled();
   margin-bottom: 0;
