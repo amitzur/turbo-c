@@ -28,7 +28,7 @@ const Menu = ({ items, renderItem, onItemClick, onIdleClick, className }) => (
       { items.map(item => (
         <MenuItem
           key={item.key}
-          onClick={!item.disabled && itemClick(item, onItemClick)}
+          onClick={item.disabled ? undefined : itemClick(item, onItemClick)}
           render={renderItem}
           item={item}
         />

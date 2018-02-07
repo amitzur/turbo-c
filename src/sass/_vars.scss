@@ -9,6 +9,21 @@ $cyan: #5ff;
 $gray-dark: #555;
 $green-dark: #0a0;
 $cyan-dark: #0aa;
+$magenta: #a0a;
+
+/*
+#000 => #aaa
+#fff => #000
+#aaa => #000
+#00a => #a00
+#ff5 => #00a
+#a00 => #0aa
+#5f5 => #a0a
+#5ff => #a00
+#555 => #aaa
+#0a0 => #a0a
+#0aa => #a00
+ */
 
 $theme-colors: (
   black: $black,
@@ -45,3 +60,5 @@ $input-height-inner: 16px; // fuck bootstrap
 $input-height-inner-sm: 16px; // fuck bootstrap
 $input-height-inner-lg: 16px; // fuck bootstrap
 $nav-link-height:16px; // fuck bootstrap
+
+$box-shadow: 16px 16px rgba(0,0,0,0.7);

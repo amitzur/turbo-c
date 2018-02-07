@@ -1,14 +1,23 @@
 import navItems from './data/nav-items';
+import { getFilesInFolder, getFileContent } from './service';
 
 class DataManager {
   constructor(store) {
     this.store = store;
 
     store.navItems = navItems;
-    store.windows = [
-      { top: 200, left: 100, width: 500, height: 300, name: "File 1.rs", zIndex: 1 },
-      { top: 250, left: 150, width: 500, height: 300, name: "File 2.rs", zIndex: 2 },
-    ];
+
+    getFilesInFolder().then(({ success, msg }) => {
+      console.log("files", msg);
+      msg.forEach(({ name, isDir }) => {
+        if (!isDir) {
+          const win = store.addWindow(name);
+          getFileContent(name).then(data => {
+            win.setState({ content: data.msg });
+          });
+        }
+      });
+    });
   }
 }
 

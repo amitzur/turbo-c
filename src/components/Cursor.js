@@ -29,7 +29,7 @@ class Cursor extends Component {
     this.el.style.left = `${x}px`;
   };
 
-  elStyle = { position: 'absolute', width: WIDTH, height: HEIGHT, background: 'rgba(170,0,0,0.5)' };
+  elStyle = { position: 'absolute', width: WIDTH, height: HEIGHT, background: 'rgba(170,0,0,0.5)', zIndex: 10000, pointerEvents: 'none' };
 
   render() {
     return <div ref={el => this.el = el} style={this.elStyle}/>

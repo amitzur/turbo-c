@@ -2,21 +2,16 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import Navbar from './components/Navbar';
 import Window from './components/Window';
-
+import Cursor from './components/Cursor';
 
 const TurboApp = ({
   store
 }) => (
   <div>
-    <Navbar items={store.navItems} />
-    {store.windows.map(window => (
-      <Window
-        key={window.name}
-        onClose={store.closeWindow}
-        onMouseDown={store.focusWindow}
-        onDrag={store.updateWindow}
-        {...window}
-      >{window.name}</Window>
+    <Cursor/>
+    <Navbar store={store} />
+    {store.windows.map(win => (
+      <Window key={win.key} store={win}>{win.content}</Window>
     ))}
   </div>
 );
