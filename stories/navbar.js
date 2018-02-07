@@ -1,9 +1,11 @@
 import React from 'react';
 import Navbar from '../src/components/Navbar';
 
-const items = [
-  { text: 'File', items: [] },
-  { text: 'Edit', items: [] },
-];
+const store = {
+  navItems: [
+    { text: 'File', items: [] },
+    { text: 'Edit', items: [] }
+  ]
+};
 
-export default () => <Navbar items={items} />
+export default () => <Navbar store={store} />

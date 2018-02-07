@@ -1,6 +1,7 @@
 import React from 'react';
 import TurboApp from '../src/TurboApp';
 import App from '../src/stores/app';
+import Button from '../src/components/Button';
 
 export default [
   { name: 'navbar', render: () => {
@@ -26,6 +27,9 @@ export default [
 
     window.__s = store;
 
-    return <TurboApp store={store} />
+    return <div>
+      <TurboApp store={store} />
+      <Button onClick={store.createFile}>New file</Button>
+    </div>
   }}
 ]
