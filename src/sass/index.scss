@@ -10,6 +10,7 @@
 @import "~bootstrap/scss/utilities/background";
 @import "~bootstrap/scss/utilities/text";
 @import "~bootstrap/scss/utilities/borders";
+@import "~bootstrap/scss/utilities/sizing";
 
 @font-face {
   font-family: DOS;
@@ -47,4 +48,8 @@ ul {
 
 .pos-absolute {
   position: absolute;
+}
+
+.border-double {
+  border-style: double;
 }

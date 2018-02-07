@@ -24,12 +24,12 @@ class Popup extends Component {
   };
 
   render() {
-    const { text, className, render } = this.props;
+    const { text, className, render, style } = this.props;
     return (
         <div className={className}>
           <div ref={el => this.el = el} onClick={this.toggle} className="clickable px-2">{text}</div>
           <ClickOutside onClickOutside={this.onClickOutside}>
-            {this.state.isOpen && <div className="pos-absolute">
+            {this.state.isOpen && <div className="pos-absolute" style={style}>
               {render({ close: this.close })}
             </div>}
           </ClickOutside>
