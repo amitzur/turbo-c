@@ -15,7 +15,6 @@ class Window extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log("nextProps", nextProps);
     const newState = {};
     ['left', 'top', 'width', 'height', 'zIndex'].forEach(prop => {
       if (prop in nextProps) newState[prop] = nextProps[prop];
@@ -98,7 +97,7 @@ class Window extends Component {
       return { top, left, width, height };
     }, () => {
       const { top, left, width, height } = this.state;
-      this.props.onDrag && this.props.onDrag(name, { top, left, width, height });
+      this.props.onDrag && this.props.onDrag(this.props.name, { top, left, width, height });
     });
   };
 

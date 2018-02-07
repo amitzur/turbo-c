@@ -4,8 +4,6 @@ import Navbar from './components/Navbar';
 import Window from './components/Window';
 
 
-// TODO why like this
-
 const TurboApp = ({
   store
 }) => (
@@ -16,7 +14,7 @@ const TurboApp = ({
         key={window.name}
         onClose={store.closeWindow}
         onMouseDown={store.focusWindow}
-        onDrag={(name, dim) => store.updateWindow(window.name, dim)}
+        onDrag={store.updateWindow}
         {...window}
       >{window.name}</Window>
     ))}
