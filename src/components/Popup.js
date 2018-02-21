@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ClickOutside from 'react-click-outside';
+import Shortcut from './Shortcut';
 
 class Popup extends Component {
 
@@ -11,6 +12,10 @@ class Popup extends Component {
     this.setState((prevState) => ({
       isOpen: !prevState.isOpen
     }));
+  };
+
+  open = () => {
+    this.setState({ isOpen: true });
   };
 
   close = () => {
@@ -27,7 +32,9 @@ class Popup extends Component {
     const { text, className, render, style } = this.props;
     return (
         <div className={className}>
-          <div ref={el => this.el = el} onClick={this.toggle} className="clickable px-2">{text}</div>
+          <div ref={el => this.el = el} onClick={this.toggle} className="clickable px-2">
+            <Shortcut text={text} charColor="red" onAction={this.open} alt/>
+          </div>
           <ClickOutside onClickOutside={this.onClickOutside}>
             {this.state.isOpen && <div className="pos-absolute box-shadow" style={style}>
               {render({ close: this.close })}

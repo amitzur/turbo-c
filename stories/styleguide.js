@@ -6,9 +6,11 @@ import navbar from './navbar';
 import cursor from './cursor';
 import button from './button';
 import window from './window';
+import shortcut from './shortcut';
 
 const styleguide = [
   { name: 'color', render: color },
+  { name: 'shortcut', render: shortcut },
   { name: 'cursor', render: cursor },
   { name: 'menu', render: menu },
   { name: 'popup', render: popup },
