@@ -6,4 +6,22 @@ In the early 1980's, Borland released its flagship product, Turbo Pascal. A few 
 
 This project is an experiment to implement the same functionality in web technologies, using React, MobX, Node.js and WebAssembly.
 
+## Usage
+
+#### Storybook
+```
+$ yarn storybook
+```
+Then go to `localhost:6006`
+
+#### Run
+```
+$ yarn start
+```
+On another terminal, start the server:
+```
+$ yarn server
+```
+
+## License
 This project is licensed under the terms of the MIT license.
