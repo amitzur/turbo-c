@@ -8,7 +8,7 @@ const store = new Window({
   left: 100,
   width: 500,
   height: 300,
-  name: "some widow",
+  name: "some window",
   onClose: action('close window'),
   onDrag: action('drag window'),
   onMouseDown: action('mouse down on window')

@@ -18,7 +18,7 @@ First, run a local server:
 yarn server
 ```
 
-Then, start the frontend by running the following command:
+Then on another terminal, start the frontend by running the following command:
 
 (it automatically opens a browser tab at `localhost:3000` or other available port)
 ```
