@@ -43,7 +43,7 @@ class Window extends Component {
   };
 
   render() {
-    const { children, store } = this.props;
+    const { store } = this.props;
     const { top, left, width, height, zIndex, onClose, name, dragging } = store;
     return (
       <div
@@ -61,7 +61,7 @@ class Window extends Component {
           <div className="window-bottom-right pos-absolute" ref={el => this.bottomRightEl = el} style={{ bottom: 0, right: 0, width: 2*SIZE_UNIT, height: 2*SIZE_UNIT}}/>
           <div className="window-bottom-left pos-absolute" ref={el => this.bottomLeftEl = el} style={{ bottom: 0, left: 0, width: SIZE_UNIT, height: 2*SIZE_UNIT }}/>
           {!dragging && <div className="pos-absolute text-white bg-blue clickable" onClick={() => onClose(store)} style={{ top: 0, left: SIZE_UNIT * 3 }}>[<span className="text-green">{'\u25A0'}</span>]</div>}
-          {children}
+          {store.content}
         </div>
       </div>
     );

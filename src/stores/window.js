@@ -23,7 +23,6 @@ export default class Window {
   }
 
   @action setState = (data) => {
-    // console.log("data", data);
     Object.assign(this, data);
   };
 
@@ -34,7 +33,7 @@ export default class Window {
       deltaY: pageY - this.top,
       startHeight: this.height,
       startWidth: this.width
-    })
+    });
   };
 
   @computed get key() {

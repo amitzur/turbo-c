@@ -1,5 +1,5 @@
-export default function Commands(store) {
+export default function Commands({ createFile }) {
   return {
-    'New': store.createFile
+    'New': createFile
   }
 }

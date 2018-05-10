@@ -4,9 +4,9 @@ import Popup from './Popup';
 import Menu from './Menu';
 import NavItem from './NavItem';
 
-const Navbar = ({ store: { navItems, command } }) => (
+const Navbar = ({ store: { items, command } }) => (
   <div className="px-2 d-flex bg-gray">
-    {navItems.map(({ text, shortcut, action, items }) => (
+    {items.map(({ text, shortcut, action, items }) => (
       <Popup style={{zIndex: 1000}} key={text} text={text} className="bg-gray" render={({ close }) => (
         <Menu
           onIdleClick={close}

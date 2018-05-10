@@ -1,17 +1,12 @@
-import { observable, computed, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { SIZE_UNIT } from '../data/constants';
-import Commands from './commands';
 import Window from './window';
 
-class App {
-  @observable navItems = [];
-  @observable windows = [];
-  createdFilesCount = 0;
-  commands;
+export class WindowsStore {
+  @observable windowsRegistry = observable.map();
 
-  constructor(initialData) {
-    this.setState(initialData);
-    this.commands = Commands(this);
+  @computed get windows() {
+    return this.windowsRegistry.values();
   }
 
   createWindow = (win) => new Window({
@@ -21,23 +16,24 @@ class App {
     onMouseDown: (win) => this.focusWindow(win)
   });
 
-  @action setState = ({
-    navItems = this.navItems,
-  }) => {
-    this.navItems = navItems;
-  };
+  @action addWindow = (name) => {
+    const { activeWindow } = this;
+    let top = 2*SIZE_UNIT, left = 0, height = window.innerHeight * 2/3, width = window.innerWidth, zIndex = 0;
+    if (activeWindow) {
+      top = activeWindow.top + 2*SIZE_UNIT;
+      left = activeWindow.left + SIZE_UNIT;
+      height = activeWindow.height - 2*SIZE_UNIT;
+      width = activeWindow.width - SIZE_UNIT;
+      zIndex = activeWindow.zIndex + 1;
+    }
 
-  @action.bound command = (name, ...args) => {
-    return this.commands[name](args);
-  };
-
-  @action createFile = () => {
-    this.addWindow(`NONAME${this.createdFilesCount++}.rs`);
+    const win = this.createWindow({ name, top, left, height, width, zIndex });
+    this.windowsRegistry.set(win.name, win);
+    return win;
   };
 
   @action closeWindow = (win) => {
-    const index = this.windows.indexOf(win);
-    this.windows = this.windows.slice(0,index).concat(this.windows.slice(index + 1));
+    this.windowsRegistry.delete(win.name);
   };
 
   @action focusWindow = (win) => {
@@ -81,22 +77,6 @@ class App {
     win.setState({ top, left, height, width });
   };
 
-  @action addWindow = (name) => {
-    const { activeWindow } = this;
-    let top = 2*SIZE_UNIT, left = 0, height = window.innerHeight * 2/3, width = window.innerWidth, zIndex = 0;
-    if (activeWindow) {
-      top = activeWindow.top + 2*SIZE_UNIT;
-      left = activeWindow.left + SIZE_UNIT;
-      height = activeWindow.height - 2*SIZE_UNIT;
-      width = activeWindow.width - SIZE_UNIT;
-      zIndex = activeWindow.zIndex + 1;
-    }
-
-    const win = { name, top, left, height, width, zIndex };
-    this.windows = this.windows.concat(this.createWindow(win));
-    return this.windows[this.windows.length - 1];
-  };
-
   @computed get topZIndex() {
     return this.windows.reduce((max, win) => Math.max(max, win.zIndex), this.windows[0] ? this.windows[0].zIndex : 0);
   }
@@ -106,4 +86,4 @@ class App {
   }
 }
 
-export default App;
+export default new WindowsStore();

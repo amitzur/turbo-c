@@ -23,11 +23,12 @@
     "eject": "react-scripts eject",
     "server": "nodemon server/index.js",
     "storybook": "start-storybook -p 6007",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "turbo-c": "/Applications/TurboC++/TurboC.app/Contents/MacOS/DOSBox -conf /Applications/TurboC++/dosbox.conf"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.11",
     "@storybook/addon-links": "^3.3.11",
-    "@storybook/react": "^3.3.11"
+    "@storybook/react": "^3.4"
   }
 }

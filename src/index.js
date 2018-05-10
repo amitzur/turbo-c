@@ -1,11 +1,24 @@
+import './sass/index.scss';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './sass/index.scss';
 import TurboApp from './TurboApp';
-import AppStore from './stores/app';
-import DataManager from './DataManager';
+import { Provider } from 'mobx-react';
+import {initData} from './Data';
 
-const appStore = window.__s = new AppStore({});
-const dataManager = new DataManager(appStore);
+import windowsStore from './stores/windowsStore';
+import navStore from './stores/navStore';
 
-ReactDOM.render(<TurboApp store={appStore} />, document.getElementById('root'));
+const stores = {
+  windowsStore,
+  navStore
+};
+
+initData(stores);
+window.__s = stores;
+
+ReactDOM.render((
+  <Provider {...stores}>
+    <TurboApp />
+  </Provider>
+), document.getElementById('root'));
