@@ -10,13 +10,13 @@ export default () => <div>
     Press ctrl+[key] and see them logged in the `action logger` bellow
   </div>
   <div className="d-flex">
-    <div className="bg-gray py-1 px-2 mr-3">
+    <div className="bg-gray p-4 mr-3">
       <Shortcut text="File" textColor="blue" charColor="red" onAction={keyPressAction('F')} ctrl />
     </div>
-    <div className="bg-green-dark py-1 px-2 mr-3">
+    <div className="bg-green-dark p-4 mr-3">
       <Shortcut text="Open" textColor="cyan" charColor="yellow" onAction={keyPressAction('O')} ctrl/>
     </div>
-    <div className="bg-cyan-dark py-1 px-2 mr-3">
+    <div className="bg-cyan-dark p-4 mr-3">
       <Shortcut text="Name" textColor="black" charColor="yellow" onAction={keyPressAction('N')} ctrl/>
     </div>
   </div>
